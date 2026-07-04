@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【保存版】ChatGPTの能力を限界突破させる「一言プロンプト厳密10選」</title>
+<style>
+    /* ==========================================
+       ベース設定
+    ========================================== */
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        background-color: #faf4f4; /* ページ全体の背景（非常に薄いピンクベージュ） */
+        color: #333;
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .wrapper {
+        max-width: 500px; /* スマホサイズに最適化 */
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ==========================================
+       ① ページ最上部（ヘッダー・バナー）
+    ========================================== */
+    .hero-banner-placeholder {
+        background-color: #e8dada; /* プレースホルダーの背景色 */
+        width: 100%;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8c7b7b;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        padding: 20px;
+    }
+    .main-title-container {
+        padding: 24px 20px 10px;
+        background: linear-gradient(to bottom, #fff, #fdfaf8);
+    }
+    .main-title {
+        font-size: 22px;
+        color: #4a3b3b;
+        text-align: center;
+        line-height: 1.4;
+        margin: 0;
+        font-weight: 800;
+    }
+    .main-title span {
+        color: #b85c5c; /* アクセントカラー */
+        border-bottom: 2px solid #f0d8d8;
+    }
+    
+    .intro-text {
+        padding: 15px 20px 5px;
+        font-size: 15px;
+        color: #444;
+    }
+
+    /* ==========================================
+       ② プレゼントセクション（メインコンテンツが先）
+    ========================================== */
+    .content-section {
+        padding: 20px 20px 30px;
+        background-color: #fdfaf8;
+    }
+    .note-box {
+        font-size: 13px;
+        color: #666;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        border-left: 4px solid #d4b8b8;
+    }
+
+    /* カードデザイン */
+    .prompt-card {
+        background-color: #ffffff;
+        border: 1px solid #f2e1e1;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+        position: relative;
+    }
+    .prompt-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #f5ebeb;
+        padding-bottom: 10px;
+    }
+    .prompt-number {
+        font-size: 14px;
+        color: #a88a8a;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    .prompt-title {
+        font-weight: bold;
+        font-size: 18px;
+        color: #b85c5c;
+        margin: 0;
+        flex-grow: 1;
+        letter-spacing: 0.5px;
+    }
+    
+    /* コピーボタン */
+    .copy-btn {
+        background-color: #f2e1e1;
+        color: #8a4b4b;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .copy-btn:hover {
+        background-color: #e8caca;
+    }
+    .copy-btn.copied {
+        background-color: #b8ccb8; /* コピー完了時の色 */
+        color: #2b542b;
+    }
+
+    .prompt-effect {
+        font-size: 15px;
+        color: #555;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .prompt-example {
+        display: block;
+        font-size: 13px;
+        color: #888;
+        margin-top: 6px;
+        background-color: #fcfcfc;
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+
+    /* ==========================================
+       ③ 誘導セクション（価値を感じた後にオファー）
+    ========================================== */
+    .cta-section {
+        padding: 30px 20px;
+        background-color: #fff;
+        border-top: 1px dashed #e8dada;
+    }
+    .cta-title {
+        font-size: 19px;
+        color: #4a3b3b;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    .message-box {
+        background-color: #fff;
+        border: 2px solid #f5ebeb;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .message-box p {
+        font-size: 15px;
+        margin-bottom: 16px;
+        color: #444;
+    }
+    .message-box p:last-child {
+        margin-bottom: 0;
+    }
+    .highlight-bg {
+        background: linear-gradient(transparent 60%, #fae6e6 60%);
+        font-weight: bold;
+    }
+    
+    /* LINEボタン周り */
+    .line-cta-area {
+        margin-top: 24px;
+        text-align: center;
+    }
+    .line-arrow-text {
+        font-weight: bold;
+        color: #d9534f;
+        margin-bottom: 10px;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    .line-btn {
+        display: block;
+        width: 100%;
+        background-color: #06C755; /* LINE公式グリーン */
+        color: #ffffff;
+        text-align: center;
+        padding: 16px 10px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 17px;
+        text-decoration: none;
+        box-shadow: 0 6px 15px rgba(6, 199, 85, 0.3);
+        /* ぽわんと拡大縮小するアニメーション */
+        animation: pulseBtn 2s infinite;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .line-btn:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
+        animation: none;
+    }
+    @keyframes pulseBtn {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+    }
+
+    /* ==========================================
+       ④ フッター
+    ========================================== */
+    .footer {
+        background-color: #f2e6e6;
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 1px solid #e8dada;
+    }
+    .footer p {
+        font-size: 14px;
+        color: #555;
+        margin: 0;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="hero-banner-placeholder">
+        ※ここにキャッチーなバナー画像を配置します<br>
+        (横幅いっぱい / 画像タグに差し替え)
+    </div>
+    
+    <div class="main-title-container">
+        <h1 class="main-title">
+            【保存版】<br>ChatGPTの能力を限界突破させる<br><span>「一言プロンプト厳選10選」</span>
+        </h1>
+    </div>
+    
+    <div class="intro-text">
+        <p>動画へのコメントありがとうございます！<br>
+        AIをまだ触ったことがない方でも、ChatGPTの性能を最大化して日常やビジネスの成果を桁違いに高める「一言プロンプト」を大公開します。早速以下からご活用ください！</p>
+    </div>
+
+    <div class="content-section">
+        
+        <div class="note-box">
+            ※これはChatGPTの公式コマンドではなく、AIに指示を伝えやすくするための「一言プロンプト」です。<br>
+            英語の“呪文”を覚えることではなく、「何をしてほしいか」をハッキリ伝えることが大切です（日本語で言ってもOKです）。
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">①</span>
+                    <h3 class="prompt-title">Explain Simply</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Explain Simply', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：難しい内容を、専門用語を減らしてシンプルに説明してくれる。</p>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">②</span>
+                    <h3 class="prompt-title">Act as an Expert</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Act as an Expert', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：専門家目線で、より深く具体的に答えてくれる。</p>
+            <span class="prompt-example">（例：マーケティングの専門家として答えて）</span>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">③</span>
+                    <h3 class="prompt-title">Give Real Examples</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Give Real Examples', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：抽象論ではなく、実際に使える具体例を出して説明してくれる。</p>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">④</span>
+                    <h3 class="prompt-title">Be Brutally Honest</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Be Brutally Honest', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：忖度なしで、弱点や改善点をはっきり教えてくれる。</p>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑤</span>
+                    <h3 class="prompt-title">ELI10</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('ELI10', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：10歳にもわかるくらい、かみ砕いて説明してくれる。</p>
+            <span class="prompt-example">※Explain Like I’m 10 の略</span>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑥</span>
+                    <h3 class="prompt-title">No-Flatter Critic</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('No-Flatter Critic', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：無理に褒めず、改善点を優先して指摘してくれる。</p>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑦</span>
+                    <h3 class="prompt-title">alt3</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('alt3', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：方向性の違う案を3つ出してくれる。</p>
+            <span class="prompt-example">（例：投稿案を3パターン出して）</span>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑧</span>
+                    <h3 class="prompt-title">TL;DR</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('TL;DR', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：長い文章を、要点だけ短くまとめてくれる。</p>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑨</span>
+                    <h3 class="prompt-title">Pros/Cons</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Pros/Cons', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：良い点と悪い点を分けて整理してくれる。</p>
+            <span class="prompt-example">（例：この副業のメリット・デメリットを教えて）</span>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-header">
+                <div style="display:flex; align-items:center;">
+                    <span class="prompt-number">⑩</span>
+                    <h3 class="prompt-title">Action Plan</h3>
+                </div>
+                <button class="copy-btn" onclick="copyPrompt('Action Plan', this)">コピー</button>
+            </div>
+            <p class="prompt-effect">効果：アイデアを、今日から動ける実行手順にしてくれる。</p>
+        </div>
+
+    </div>
+
+    <div class="cta-section">
+        <h2 class="cta-title">💡 さらに直接、深く学びたい方へ</h2>
+        
+        <div class="message-box">
+            <p>一言プロンプトはいかがでしたか？</p>
+            <p>現在、期間限定でさらに深くAIを使いこなしたい方に向けた<span class="highlight-bg">「個別相談会」</span>を行っています。</p>
+            
+            <p>「AIを触ったことがないけれど大丈夫ですか？」という方にも、レベルや状況に合わせて「まずどこから始めればいいか」を一緒に考えています。</p>
+            
+            <p>実際、この相談会をきっかけに、未経験から画像生成案件で月30万円以上稼げるようになった方もいらっしゃいます。「面白そうだけど自分にできるかな…」って思った方こそ、ぜひ気軽に来てもらえると嬉しいです😊</p>
+            
+            <p>今だけ無料でご参加いただけるので、下記リンクからLINE登録いただいて、私の無料動画を見てから相談会へ応募してくださいね！</p>
+
+            <div class="line-cta-area">
+                <div class="line-arrow-text">↓こちらより無料で登録できます↓</div>
+                <a href="#" class="line-btn">今すぐLINEに登録して無料で手に入れる</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>AIの情報が多すぎて、どれを信じたらいいか迷う人は僕をフォローして最新情報をチェックしてください。</p>
+    </div>
+
+</div>
+
+<script>
+    function copyPrompt(text, btnElement) {
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btnElement.innerText;
+            btnElement.innerText = 'コピー完了!';
+            btnElement.classList.add('copied');
+            
+            setTimeout(() => {
+                btnElement.innerText = originalText;
+                btnElement.classList.remove('copied');
+            }, 2000);
+        }).catch(err => {
+            console.error('コピーに失敗しました', err);
+            alert('コピーに失敗しました。お手数ですが手動でコピーしてください。');
+        });
+    }
+</script>
+
+</body>
+</html>
